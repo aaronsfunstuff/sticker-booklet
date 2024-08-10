@@ -104,10 +104,13 @@ function displayStickers(page) {
         const stickerDiv = document.createElement('div');
         stickerDiv.className = 'sticker';
         stickerDiv.innerHTML = `<img src="${url}" alt="Sticker">`;
+        stickerDiv.addEventListener('click', function() {
+            stickerDiv.classList.toggle('unblurred');
+        });
         stickerSheet.appendChild(stickerDiv);
     });
 
-    document.getElementById('pageInfo').textContent = `Page ${page} of ${Math.ceil(stickers.length / stickersPerPage)}`;
+    document.getElementById('pageInfo').innerText = `Page ${page} of ${Math.ceil(stickers.length / stickersPerPage)}`;
 }
 
 document.getElementById('prevPage').addEventListener('click', () => {
@@ -124,4 +127,9 @@ document.getElementById('nextPage').addEventListener('click', () => {
     }
 });
 
+document.getElementById('themeToggle').addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+});
+
 displayStickers(currentPage);
+
